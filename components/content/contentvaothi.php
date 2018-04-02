@@ -1,15 +1,6 @@
-
-
+ 
 <?php
-
-  /*xoa  luu chay an di thieu js cho ajax*/
- /*   include '../../js/btnsubmit.js';*/
-    $host_name = "localhost";
-    $user_name = "root";
-    $password = "";
-    $database_name = "webthitructuyen";
-
-    $conn = mysqli_connect( $host_name, $user_name, $password, $database_name) or die ('Error connect database');
+include ('database/connect.php');
 mysqli_set_charset($conn,"utf8");
   $iddethi = intval($_GET['iddethi']);  //Output: myquery
 
@@ -38,7 +29,6 @@ mysqli_set_charset($conn,"utf8");
             </div>
           </div>
         </div>
-
         <!-- tên người dùng - id người dùng  -->
         <div class="col-md-12" style=" height: 100px;">
           <div class="row">
@@ -91,27 +81,54 @@ mysqli_set_charset($conn,"utf8");
           </div>
           <?php } ?>
           <div class="col-md-12 t ext-center" style="margin-bottom: 20px">
-           <button  name= "cauhoi" onclick="submit()" > Nộp bài</button>
+           <button  value="nopbai" name= "cauhoi" onclick="submit()" > Nộp bài</button>
          </div>
         </form>
+        <div id="result">
+           
+        </div>
 
        </div>
      </div>
    </div>
-  <script src="http://code.jquery.com/jquery-1.9.1.js"></script>
 
+   
+<!--    <style type="text/css">
+  .hide{
+   display: none;
+  }
+
+</style>
+
+<script type="text/javascript">
+  $(function(){
+     $('#result').on('click','button', function(){
+       var name = $(this).attr('name');
+       if (name == 'cauhoi' ) {
+         $.post(('demo.php'),value: id, function(data){
+           $('#result').html(data);
+         });
+         alert("oke");
+       }
+     });
+
+  });
+
+</script> -->
+  <!-- <script src="http://code.jquery.com/jquery-1.9.1.js"></script>
    <script type="text/javascript">
      
          function submit(){
             $.ajax({
             type: "POST",
-            url: "ajax.php",
-            data: $('content').serialize(),
+            url: "database/ajax.php", 
+            data: $('form').serialize(),
             success: function(msg) {
-              $("#content").addClass("hide");
+              $("#container").addClass("hide");
               $('#result').show();
               $('#result').append(msg);
             }
        });
   }
    </script>
+   -->

@@ -1,17 +1,12 @@
 <?php 
-  $host_name = "localhost";
-  $user_name = "root";
-  $password = "";
-  $database_name = "webthitructuyen";
-  $conn = mysqli_connect( $host_name, $user_name, $password, $database_name) or die ('Error connect database')
+  include ('database/connect.php');
 ?>
 
 <!-- truy vấn -->
   <?php 
-    $query = "SELECT dethi.iddethi, tendethi, mon.tenmon FROM dethi, cauhoi ,mon WHERE dethi.iddethi = cauhoi.iddethi and cauhoi.idmon=mon.idmon GROUP BY dethi.iddeThi";
+    $query = "SELECT iddethi, tendethi, tenmon FROM dethi";
     $sql = mysqli_query($conn, $query);
   ?>
-  
   
 <?php while($result = mysqli_fetch_array($sql)){ ?>
 

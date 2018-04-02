@@ -8,9 +8,9 @@ if (isset($_POST['btnthem']))
 {		
 	$tendethi = $_POST['txttendethi'];	
 	$socau = $_POST['txtsocau'];
-	$idmon = $_POST['txtidmon'];
+	$tenmon = $_POST['txttenmon'];
 
-	$sql = "INSERT into dethi (tendethi, socau, IDMon, ngaytao) values ('$tendethi','$socau', '$idmon',  CURRENT_DATE)";
+	$sql = "INSERT into dethi (tendethi, socau, tenmon, ngaytao) values ('$tendethi','$socau', '$tenmon',  CURRENT_DATE)";
 	mysqli_query($connerct,$sql);
 
 	mysqli_close($connerct);

@@ -11,33 +11,6 @@
     header('Location:index.php');
   } 
 ?>
-<!-- <style type="text/css">
- a{text-decoration: none;}
-  }
-  a{
-    color: white;
-  }
-  li a{
-    font-size: 20px
-  }
-  li:hover a{
-    color: #FFFFFF; 
-  }
-  ul:hover a{
-    color: white;
-    text-decoration: none;
-  } 
-
-#menucontent ul li a:hover{
-  background-color: #0080ff;
-  color: black;
-} 
-
- #menucontent ul li:hover a{
-  background-color: #0000e6;
-  color: white;
-} 
-</style>-->
 
 <nav class="navbar navbar-form">
   <div class="container-fluid">

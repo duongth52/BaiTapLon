@@ -18,10 +18,9 @@
             <input type="text" class="form-control" placeholder="Mời nhập" name="txtsocau">
           </div>
           <div class="form-group">
-            <i>IDMon:</i>
             <input type="text" class="form-control" placeholder="Mời nhập" name="txtidmon">
+            <input type="text" class="form-control" placeholder="Mời nhập" name="txttenmon">
           </div>
-
           <div class="form-group">
             <button type="submit" class="btn btn-default" style="margin-left: 330px; width: 120px" name="btnthem">Thêm mới</button>
           </div>

@@ -1,9 +1,19 @@
+ <style type="text/css">
+  #aa{
+    
+  }   
+
+ </style>
+ 
  <?php if(isset($_SESSION['username'])){ ?>
 
-   <div class="nav navbar-nav navbar-right">
+   <div class="nav navbar-nav navbar-right" id = "aa">
     <li><a style="font-size: 14px" ><span class="glyphicon glyphicon-user"></span>&nbsp;&nbsp;<?php echo $_SESSION['username']; ?></a>
     </li>
-    <form style="background-color: #66b3ff" method="POST"><li><button style="background-color: #66b3ff" name="btn_Logout"><a style="background-color: #66b3ff" style="font-size: 14px">Đăng xuất</a></button></li></form>
+    <li><form style="background-color: #66b3ff" method="POST">
+      <button style="background-color: #66b3ff; border: none;margin-top: 15px; color: white " name="btn_Logout">
+        Đăng xuất
+      </button></form></li>
   </div>
   <?php } else { ?>
   <div class="nav navbar-nav navbar-right">

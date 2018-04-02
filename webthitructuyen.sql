@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Apr 01, 2018 at 07:02 PM
+-- Generation Time: Apr 02, 2018 at 10:39 AM
 -- Server version: 10.1.30-MariaDB
 -- PHP Version: 7.2.1
 
@@ -37,10 +37,18 @@ CREATE TABLE `cauhoi` (
   `dapAnD` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
   `dapAndung` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
   `IDDethi` int(10) NOT NULL,
-  `IDMon` int(10) NOT NULL,
   `trangThai` bit(10) NOT NULL DEFAULT b'1',
   `ngayTao` date DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+
+--
+-- Dumping data for table `cauhoi`
+--
+
+INSERT INTO `cauhoi` (`IDCauHoi`, `cauHoi`, `dapAnA`, `dapAnB`, `dapAnC`, `dapAnD`, `dapAndung`, `IDDethi`, `trangThai`, `ngayTao`) VALUES
+(23, 'môn sử là gì', 'văn', 'Toán', 'hóa', 'Sử', '4', 6, b'0000000001', '2018-04-02'),
+(25, 'sử', 'a', 's', 'd', 'f', '1', 6, b'0000000001', '2018-04-02'),
+(26, 'sử sử', 's', 'd', 'a', 'f', 'a', 6, b'0000000001', '2018-04-02');
 
 -- --------------------------------------------------------
 
@@ -53,16 +61,17 @@ CREATE TABLE `dethi` (
   `tenDethi` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
   `soCau` int(10) NOT NULL,
   `ngayTao` date DEFAULT NULL,
-  `trangThai` bit(10) NOT NULL DEFAULT b'1'
+  `trangThai` bit(10) NOT NULL DEFAULT b'1',
+  `tenmon` varchar(255) COLLATE utf8_unicode_ci NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 --
 -- Dumping data for table `dethi`
 --
 
-INSERT INTO `dethi` (`IDdeThi`, `tenDethi`, `soCau`, `ngayTao`, `trangThai`) VALUES
-(4, 'deThi_MH', 3, '2018-03-28', b'0000000001'),
-(5, 'deThi_MH', 3, NULL, b'0000000001');
+INSERT INTO `dethi` (`IDdeThi`, `tenDethi`, `soCau`, `ngayTao`, `trangThai`, `tenmon`) VALUES
+(5, 'deThi_Anh', 3, '2018-04-02', b'0000000001', 'Anh'),
+(6, 'dethi_Su', 3, '2018-04-02', b'0000000001', 'sử');
 
 -- --------------------------------------------------------
 
@@ -76,38 +85,9 @@ CREATE TABLE `ketqua` (
   `Diem` int(10) NOT NULL,
   `IDtaiKhoan` int(10) NOT NULL,
   `trangThai` bit(10) NOT NULL DEFAULT b'1',
-  `ngayTao` date DEFAULT NULL
+  `ngayTao` date DEFAULT NULL,
+  `tenmon` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
-
---
--- Dumping data for table `ketqua`
---
-
-INSERT INTO `ketqua` (`IDketQua`, `IDDethi`, `Diem`, `IDtaiKhoan`, `trangThai`, `ngayTao`) VALUES
-(6, 4, 10, 1, b'0000000001', '2018-03-29'),
-(7, 4, 8, 1, b'0000000001', '2018-04-01');
-
--- --------------------------------------------------------
-
---
--- Table structure for table `mon`
---
-
-CREATE TABLE `mon` (
-  `IDMon` int(10) NOT NULL,
-  `tenMon` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
-  `trangThai` bit(10) NOT NULL DEFAULT b'1',
-  `ngayTao` date DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
-
---
--- Dumping data for table `mon`
---
-
-INSERT INTO `mon` (`IDMon`, `tenMon`, `trangThai`, `ngayTao`) VALUES
-(1, 'monvan', b'0000110001', '2018-03-27'),
-(2, 'monSu', b'0000110001', '2018-03-27'),
-(3, 'English', b'0000000001', '2018-03-30');
 
 -- --------------------------------------------------------
 
@@ -151,7 +131,7 @@ CREATE TABLE `taikhoan` (
 
 INSERT INTO `taikhoan` (`IDtaiKhoan`, `tenTaikhoan`, `matKhau`, `IDQuyen`, `trangThai`, `ngayTao`) VALUES
 (1, 'User', '123', 1, b'0000110001', '2018-03-27'),
-(2, 'Admin', 'Giangdeptrai97', 2, b'0000110001', '2018-03-27'),
+(2, 'Admin', '123', 2, b'0000110001', '2018-03-27'),
 (3, 'User1', '111', 1, b'0000110001', '2018-03-28'),
 (4, 'user1', '111aaa', 1, b'0000110001', '2018-03-28'),
 (5, '0', '113', 1, b'0000000001', '2018-03-26'),
@@ -162,21 +142,6 @@ INSERT INTO `taikhoan` (`IDtaiKhoan`, `tenTaikhoan`, `matKhau`, `IDQuyen`, `tran
 (10, '', '', 0, b'0000000001', NULL),
 (11, '35', '3634', 0, b'0000000001', NULL);
 
--- --------------------------------------------------------
-
---
--- Table structure for table `tailieu`
---
-
-CREATE TABLE `tailieu` (
-  `IDtaiLieu` int(10) NOT NULL,
-  `tenTaiLieu` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
-  `IDMon` int(10) NOT NULL,
-  `noiDung` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
-  `trangThai` bit(10) NOT NULL,
-  `ngayTao` date NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
-
 --
 -- Indexes for dumped tables
 --
@@ -186,7 +151,6 @@ CREATE TABLE `tailieu` (
 --
 ALTER TABLE `cauhoi`
   ADD PRIMARY KEY (`IDCauHoi`),
-  ADD KEY `cauhoi_ibfk_2` (`IDMon`),
   ADD KEY `IDDethi` (`IDDethi`);
 
 --
@@ -204,12 +168,6 @@ ALTER TABLE `ketqua`
   ADD KEY `IDtaiKhoan` (`IDtaiKhoan`);
 
 --
--- Indexes for table `mon`
---
-ALTER TABLE `mon`
-  ADD PRIMARY KEY (`IDMon`);
-
---
 -- Indexes for table `quyen`
 --
 ALTER TABLE `quyen`
@@ -223,13 +181,6 @@ ALTER TABLE `taikhoan`
   ADD KEY `tailjoan_ibfk_1` (`IDQuyen`);
 
 --
--- Indexes for table `tailieu`
---
-ALTER TABLE `tailieu`
-  ADD PRIMARY KEY (`IDtaiLieu`),
-  ADD KEY `IDMon` (`IDMon`);
-
---
 -- AUTO_INCREMENT for dumped tables
 --
 
@@ -237,25 +188,19 @@ ALTER TABLE `tailieu`
 -- AUTO_INCREMENT for table `cauhoi`
 --
 ALTER TABLE `cauhoi`
-  MODIFY `IDCauHoi` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=23;
+  MODIFY `IDCauHoi` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=27;
 
 --
 -- AUTO_INCREMENT for table `dethi`
 --
 ALTER TABLE `dethi`
-  MODIFY `IDdeThi` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+  MODIFY `IDdeThi` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
 
 --
 -- AUTO_INCREMENT for table `ketqua`
 --
 ALTER TABLE `ketqua`
   MODIFY `IDketQua` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
-
---
--- AUTO_INCREMENT for table `mon`
---
-ALTER TABLE `mon`
-  MODIFY `IDMon` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
 -- AUTO_INCREMENT for table `quyen`
@@ -268,12 +213,6 @@ ALTER TABLE `quyen`
 --
 ALTER TABLE `taikhoan`
   MODIFY `IDtaiKhoan` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
-
---
--- AUTO_INCREMENT for table `tailieu`
---
-ALTER TABLE `tailieu`
-  MODIFY `IDtaiLieu` int(10) NOT NULL AUTO_INCREMENT;
 
 --
 -- Constraints for dumped tables
@@ -297,12 +236,6 @@ ALTER TABLE `ketqua`
 --
 ALTER TABLE `quyen`
   ADD CONSTRAINT `quyen_ibfk_2` FOREIGN KEY (`IDQuyen`) REFERENCES `taikhoan` (`IDQuyen`);
-
---
--- Constraints for table `tailieu`
---
-ALTER TABLE `tailieu`
-  ADD CONSTRAINT `tailieu_ibfk_2` FOREIGN KEY (`IDMon`) REFERENCES `mon` (`IDMon`);
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
